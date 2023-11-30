@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:ital@1&family=Ubuntu&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: rgb(2,0,36);
+    background: linear-gradient(15deg, rgba(2,0,36,1) 9%, rgba(19,104,177,1) 62%, rgba(113,82,153,1) 90%);
+    background-size: cover;
+}
+
+.mainContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.toDoContainer {
+    width: 415px;
+    height: max-content;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.toDoContainerTitle {
+    font-family: Ubuntu;
+    margin: 0px 0px 0px 8px;
+    font-size: 1.5rem;
+}
+
+.inputContainer {
+    margin: 10px 0px 0px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+#taskTextInput {
+    font-family: "Sofia Sans Semi Condensed";
+    width: 350px;
+    height: 30px;
+    font-size: 1.2rem;
+}
+
+#addTaskBtn {
+    font-family: Ubuntu;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    line-height: 0px;
+    text-align: center; 
+    border: none;
+    color: white;
+    background-color: #2264AD;
+    cursor: pointer;
+}
+
+#addTaskBtn {
+    font-family: Ubuntu;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    line-height: 0px;
+    text-align: center; 
+    border: none;
+    color: white;
+    background-color: #2264AD;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+#addTaskBtnText {
+    font-size: 25px;
+    width: 30px;
+    height: 30px;
+    line-height: 27px;
+    z-index: 10;
+}
+
+#addTaskBtn.animated {
+    animation-duration: .8s;
+    animation-name: slidein;
+}
+
+#addTaskBtnText.animated {
+    animation-duration: .8s;
+    animation-name: slideon;
+}
+
+@keyframes slidein {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.92); }
+    100% { transform: scale(1); }
+  }
+
+@keyframes slideon {
+    0% { margin-left: 0%; }
+    50% { margin-left: -100%; }
+    51% { margin-left: 100%; }
+    100% { margin-left: 0%; }
+}
+
+#tasksContainer {
+    margin: 10px;
+    width: 385px;
+    min-height: 50px;
+    height: max-content;
+    overflow: hidden;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    max-width: 333px;
+    height: max-content;
+    margin-left: 5px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
+}
+
+.containerForTask {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: max-content;
+    margin-bottom: 5px;
+    animation: containerCreateAnimation 1s;
+    overflow: hidden;
+}
+
+@keyframes containerCreateAnimation {
+    0% { 
+        margin-left: -100%;
+        margin-right: -100%;
+    }
+    100% { 
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+}
+
+.containerDeleteAnimation {
+    animation: opacityHundredToZero .5s;
+}
+
+@keyframes opacityHundredToZero {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.deleteBtn {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    margin-left: auto;
+    stroke: black;
+}
+
+.deleteBtn:hover {
+    stroke:red;
+}
+
+.checkboxes {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    width: .9rem;
+    height: .9rem;
+    border: 0.12em solid #2264AD;
+    border-radius: 0.3rem;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+    animation: checkBordersOnAnim .3s forwards;
+}
+
+.checkboxes:checked {
+    border: 0;
+    animation: checkBordersOffAnim .3s forwards;
+}
+
+.checkboxes::before {
+    content: "✔"; 
+    font-size: 1.2em; 
+    color: #2264AD; 
+    transform: scale(0);
+    border: 0;
+}
+
+.checkboxes:checked::before {
+    animation: checkOnAnim .3s forwards; /* Анимация при включении */
+}
+
+@keyframes checkOnAnim {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+@keyframes checkOffAnim {
+    0% { transform: scale(1); }
+    100% { transform: scale(0); }
+}
+
+@keyframes checkBordersOnAnim {
+    0% { border: 0; }
+    100% { border: 0.12em solid #2264AD; }
+}
+
+@keyframes checkBordersOffAnim {
+    0% { border: 0.12em solid #2264AD; }
+    100% { border: 0; }
+}
+
+/* Анимация при выключении */
+.checkboxes:not(:checked)::before {
+    animation: checkOffAnim .3s forwards;
+}
+
+.checkboxes:checked + .task {
+    text-decoration: line-through;
+}
